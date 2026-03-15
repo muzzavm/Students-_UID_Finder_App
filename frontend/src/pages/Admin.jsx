@@ -16,7 +16,7 @@ const Admin = () => {
   });
 
   const [uploading, setUploading] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null); // സെലക്ട് ചെയ്ത ഫയൽ സൂക്ഷിക്കാൻ
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +34,7 @@ const Admin = () => {
         regNo: formData.regNo
       };
 
-      const response = await axios.post('http://localhost:5000/api/students/add', studentData);
+      const response = await axios.post('https://students-uid-finder-app.onrender.com/api/students/add', studentData);
       
       if (response.data.success) {
         alert('Student Added Successfully!');
