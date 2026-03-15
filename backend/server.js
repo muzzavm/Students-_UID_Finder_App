@@ -10,15 +10,19 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: process.env.FRONTEND_URL || '*', 
+    methods: ['GET', 'POST']
+}));
+
 app.use(express.json());
 
 // 1. Admin Passcode Verification Route
 app.post('/api/admin/verify-passcode', (req, res) => {
     const { passcode } = req.body;
     
-    // .env 
-    const correctPasscode = process.env.ADMIN_PASSCODE;
+
+    const correctPasscode = process.env.PASSCODE || process.env.ADMIN_PASSCODE;
 
     if (passcode === correctPasscode) {
         return res.json({ success: true, message: "Verification Successful" });
@@ -29,6 +33,11 @@ app.post('/api/admin/verify-passcode', (req, res) => {
 
 // 2. Student Routes
 app.use('/api/students', studentRoutes);
+
+// Root Route 
+app.get('/', (req, res) => {
+    res.send("API is running... 🚀");
+});
 
 // Server Setup
 const PORT = process.env.PORT || 5000;

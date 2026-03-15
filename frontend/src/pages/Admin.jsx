@@ -49,12 +49,11 @@ const Admin = () => {
     }
   };
 
-  // ഫയൽ സെലക്ട് ചെയ്യുമ്പോൾ മാത്രം റൺ ചെയ്യുന്ന ഫങ്ക്ഷൻ
+
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
   };
 
-  // അപ്‌ലോഡ് ബട്ടൺ അമർത്തുമ്പോൾ ഡാറ്റ പ്രോസസ്സ് ചെയ്യാനുള്ള ഫങ്ക്ഷൻ
   const handleBulkUpload = async () => {
     if (!selectedFile) {
       alert("Please select a JSON file first!");
@@ -94,13 +93,13 @@ const Admin = () => {
               phone: student.phone || "0000000000"
             };
 
-            await axios.post('http://localhost:5000/api/students/add', filteredData);
+            await axios.post('https://students-uid-finder-app.onrender.com/api/students/add', filteredData);
             successCount++;
           }
 
           alert(`${successCount} Students uploaded successfully!`);
           setUploading(false);
-          setSelectedFile(null); // ഫയൽ റീസെറ്റ് ചെയ്യുന്നു
+          setSelectedFile(null); 
           document.getElementById('fileInput').value = ""; 
         }
       } catch (err) {

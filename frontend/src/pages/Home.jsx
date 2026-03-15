@@ -17,7 +17,7 @@ const Home = () => {
     try {
       const { classRoom, phone } = formData;
       const { data } = await axios.get(
-        `http://localhost:5000/api/students/search?classRoom=${classRoom}&phone=${phone}`
+        `https://students-uid-finder-app.onrender.com/api/students/search?classRoom=${classRoom}&phone=${phone}`
       );
       setStudent(data);
     } catch (err) {

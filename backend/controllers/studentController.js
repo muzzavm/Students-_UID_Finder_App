@@ -38,7 +38,6 @@ exports.searchStudent = async (req, res) => {
     try {
         const { classRoom, phone } = req.query;
 
-        // Name ഒഴിവാക്കി, Phone-ഉം ClassRoom-ഉം മാത്രം വെച്ച് കണ്ടെത്തുന്നു
         const student = await Student.findOne({
             classRoom: classRoom.trim(),
             phone: phone.trim()
